@@ -1,0 +1,139 @@
+/* Variáveis de Tema */
+:root {
+    --background-color: #f0f2f5;
+    --text-color: #333;
+    --container-bg: #ffffff;
+    --button-bg: #007bff;
+    --button-hover-bg: #0056b3;
+    --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    --box-shadow-button: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --box-shadow-button-hover: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Modo Escuro */
+[data-theme='dark'] {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --container-bg: #1e1e1e;
+    --button-bg: #6200ea;
+    --button-hover-bg: #3700b3;
+    --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    --box-shadow-button: 0 4px 8px rgba(0, 0, 0, 0.3);
+    --box-shadow-button-hover: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilos Gerais */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contêiner Principal */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    background-color: var(--container-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Cabeçalho */
+h1 {
+    color: var(--text-color);
+    margin-bottom: 20px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/* Formulário */
+form {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* Seletores e Botão */
+select, button {
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+select {
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+button {
+    background-color: var(--button-bg);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--box-shadow-button);
+}
+
+button:hover {
+    background-color: var(--button-hover-bg);
+    box-shadow: var(--box-shadow-button-hover);
+}
+
+/* Contêiner do Gráfico */
+#graph-container {
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 20px;
+    background-color: var(--container-bg);
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    select, button {
+        width: 100%;
+    }
+}
+
+/* Botão de Alternância de Tema */
+#theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--button-bg);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#theme-toggle:hover {
+    background-color: var(--button-hover-bg);
+}
