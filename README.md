@@ -1,67 +1,66 @@
 # COVID-19 Data Explorer
 
-Um dashboard interativo para explorar e visualizar dados globais de casos confirmados de COVID-19. Este projeto web é construído com **Python** e utiliza as bibliotecas **Flask** para o servidor, **Pandas** para o processamento de dados e **Plotly** para a criação de gráficos interativos.
+An interactive dashboard to explore and visualize global confirmed COVID-19 case data. This web project is built with **Python** and uses the **Flask** framework for the server, **Pandas** for data processing, and **Plotly** for creating interactive charts.
 
 ---
 
-### 💻 Tecnologias Utilizadas
+### 💻 Technologies Used
 
-* **Python 3.x:** A linguagem de programação principal.
-* **Flask:** Um microframework para criar a aplicação web.
-* **Pandas:** Usado para manipulação e análise dos dados.
-* **Plotly Express:** Biblioteca para a criação de visualizações de dados dinâmicas.
+* **Python 3.x:** The main programming language.
+* **Flask:** A micro-framework for building the web application.
+* **Pandas:** Used for data manipulation and analysis.
+* **Plotly Express:** A library for creating dynamic data visualizations.
 
 ---
 
-### 🚀 Instalação e Execução
+### 🚀 Installation and Running
 
-Siga os passos abaixo para configurar e rodar o projeto localmente.
+Follow the steps below to set up and run the project locally.
 
-1.  **Clone o repositório:**
+1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
-    cd seu-repositorio
+    git clone [https://github.com/your-username/your-repository.git](https://github.com/your-username/your-repository.git)
+    cd your-repository
     ```
-    *Lembre-se de substituir `seu-usuario/seu-repositorio` pelos seus dados.*
+    *Remember to replace `your-username/your-repository` with your own details.*
 
-2.  **Crie e ative um ambiente virtual (recomendado):**
+2.  **Create and activate a virtual environment (recommended):**
     ```bash
     python -m venv venv
-    # No Windows
+    # On Windows
     .\venv\Scripts\activate
-    # No macOS/Linux
+    # On macOS/Linux
     source venv/bin/activate
     ```
 
-3.  **Instale as dependências:**
+3.  **Install the dependencies:**
     ```bash
     pip install Flask pandas plotly
     ```
 
-4.  **Execute a aplicação:**
+4.  **Run the application:**
     ```bash
     python data_loader.py
     ```
 
-5.  **Acesse o dashboard:**
-    Abra seu navegador e acesse `http://127.0.0.1:5000`.
+5.  **Access the dashboard:**
+    Open your browser and navigate to `http://127.0.0.1:5000`.
 
 ---
 
-### 📚 Uso
+### 📚 Usage
 
-O dashboard permite selecionar um país em um menu suspenso para visualizar o número de casos de COVID-19 confirmados ao longo do tempo. Você pode alternar entre gráficos de linha e de barra para diferentes visualizações.
-
----
-
-### 📄 Fonte de Dados
-
-Os dados utilizados neste projeto são extraídos do repositório CSSE (Center for Systems Science and Engineering) da **Johns Hopkins University**.
-
-* **URL da fonte:** `https://github.com/CSSEGISandData/COVID-19`
+The dashboard allows you to select a country from a dropdown menu to visualize the number of confirmed COVID-19 cases over time. You can switch between line and bar charts for different views.
 
 ---
 
-### 🤝 Contribuição
+### 📄 Data Source
 
-Contribuições são bem-vindas! Se tiver alguma ideia ou encontrar um bug, por favor, abra uma _issue_ ou envie um _pull request_.
+The data used in this project is sourced from the CSSE (Center for Systems Science and Engineering) data repository at **Johns Hopkins University**.
+
+* **Source URL:** `https://github.com/CSSEGISandData/COVID-19`
+
+---
+### 🤝 Contribution
+
+Contributions are welcome! If you have an idea or find a bug, please open an _issue_ or submit a _pull request_.
