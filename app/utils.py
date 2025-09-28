@@ -1,18 +1,21 @@
+# app/utils.py
+
 import pandas as pd
 
 def load_and_prepare_data():
     """
-    Carrega os dados de COVID-19 do CSSE e os prepara para uso.
+    Carrega os dados de COVID-19 do Our World in Data e os prepara para uso.
     """
-    url = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv'
+    # Nova URL para a base de dados do Our World in Data
+    url = 'https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv'
     df = pd.read_csv(url)
-    
-    # Derrete o DataFrame para converter as datas de colunas para linhas
-    df_melted = df.melt(id_vars=['Province/State', 'Country/Region', 'Lat', 'Long'], 
-                        var_name='Date', 
-                        value_name='Confirmed')
+
+    # Nota: a nova base de dados já está "derretida" e não precisa do .melt()
+    # A coluna de país se chama 'location' e a de data se chama 'date'
+    df_prepared = df.rename(columns={'location': 'Country/Region', 'total_cases': 'Confirmed', 'date': 'Date'})
+    df_prepared = df_prepared[['Country/Region', 'Date', 'Confirmed']]
     
     # Converte a coluna 'Date' para o tipo datetime
-    df_melted['Date'] = pd.to_datetime(df_melted['Date'], format='%m/%d/%y')
+    df_prepared['Date'] = pd.to_datetime(df_prepared['Date'])
     
-    return df_melted
+    return df_prepared

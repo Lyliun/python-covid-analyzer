@@ -6,14 +6,89 @@
     <title>COVID-19 Data Explorer</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .container {
-            margin-top: 50px;
-        }
-    </style>
+<style>
+    :root {
+        --bg-dark: #121212;
+        --bg-light: #1e1e1e;
+        --text-light: #e0e0e0;
+        --accent-blue: #00b894;
+        --accent-gray: #7f8c8d;
+    }
+
+    body {
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        font-family: 'Segoe UI', 'Roboto', sans-serif;
+    }
+
+    .container {
+        background-color: var(--bg-light);
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+        color: var(--text-light);
+        font-weight: 600;
+        margin-bottom: 30px;
+    }
+
+    label {
+        font-weight: 500;
+        color: var(--text-light);
+    }
+
+    .form-select, .btn {
+        border-radius: 8px;
+        box-shadow: none;
+        transition: all 0.3s ease;
+    }
+
+    .form-select {
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        border: 1px solid var(--accent-gray);
+    }
+
+    .form-select:focus {
+        border-color: var(--accent-blue);
+        box-shadow: 0 0 0 0.25rem rgba(0, 184, 148, 0.25);
+    }
+
+    .btn-primary {
+        background-color: var(--accent-blue);
+        border-color: var(--accent-blue);
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background-color: #009677;
+        border-color: #009677;
+    }
+
+    .btn-secondary {
+        background-color: var(--accent-gray);
+        border-color: var(--accent-gray);
+        color: #fff;
+    }
+    
+    .btn-secondary:hover {
+        background-color: #6c7a7b;
+        border-color: #6c7a7b;
+    }
+
+    hr {
+        border-top: 1px solid #444;
+        margin: 30px 0;
+    }
+
+    #chart-container {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+</style>
+
 </head>
 <body>
 
@@ -34,6 +109,22 @@
             <button id="line-chart-btn" class="btn btn-primary me-2">Gráfico de Linha</button>
             <button id="bar-chart-btn" class="btn btn-secondary">Gráfico de Barra</button>
         </div>
+
+        <div class="col-md-12 d-flex justify-content-center mt-3">
+            <div class="row align-items-center">
+                <div class="col">
+                    <label for="start-date" class="form-label mb-0">Início:</label>
+                    <input type="date" id="start-date" class="form-control">
+                </div>
+                <div class="col">
+                    <label for="end-date" class="form-label mb-0">Fim:</label>
+                    <input type="date" id="end-date" class="form-control">
+                </div>
+                <div class="col">
+                    <button id="filter-btn" class="btn btn-info mt-3">Aplicar Filtro</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <hr class="my-4">
@@ -46,11 +137,18 @@
     const countrySelect = document.getElementById('country-select');
     const lineChartBtn = document.getElementById('line-chart-btn');
     const barChartBtn = document.getElementById('bar-chart-btn');
+    const startDateInput = document.getElementById('start-date');
+    const endDateInput = document.getElementById('end-date');
+    const filterBtn = document.getElementById('filter-btn');
     const chartContainer = document.getElementById('chart-container');
 
     function fetchDataAndRenderChart(chartType) {
         const selectedCountry = countrySelect.value;
-        const url = `/data?country=${selectedCountry}&chart_type=${chartType}`;
+        const startDate = startDateInput.value;
+        const endDate = endDateInput.value;
+
+        // Constrói a URL com os novos parâmetros de data
+        const url = `/data?country=${selectedCountry}&chart_type=${chartType}&start_date=${startDate}&end_date=${endDate}`;
 
         fetch(url)
             .then(response => {
@@ -69,9 +167,12 @@
             });
     }
 
+    // Adiciona event listeners para os botões
     lineChartBtn.addEventListener('click', () => fetchDataAndRenderChart('line'));
     barChartBtn.addEventListener('click', () => fetchDataAndRenderChart('bar'));
+    filterBtn.addEventListener('click', () => fetchDataAndRenderChart(document.querySelector('.btn-primary').id.includes('line') ? 'line' : 'bar'));
 
+    // Carrega o gráfico inicial quando a página carrega
     document.addEventListener('DOMContentLoaded', () => {
         fetchDataAndRenderChart('line');
     });
